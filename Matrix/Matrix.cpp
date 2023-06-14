@@ -1,4 +1,4 @@
-// Преобразовать матрицу, умножив элементы каждой строки на значение второго элемента этой строки.
+// 2
 #include <iostream>
 #include <stdlib.h>
 #include <ctime>
@@ -32,8 +32,7 @@ int main() {
     return 0;
 }
 
-// В квадратной матрице найти сумму положительных элементов, лежащих на и выше главной диагонали и расположенных в чётных столбцах
-
+// 4
 #include <iostream>
 #include <array>
 #include <stdlib.h>
@@ -58,8 +57,8 @@ int main() {
     std::cout << "\n";
 
     for (int i = 0; i < nrows; i++) {
-        for (int j = i; j < ncols; j++) { // просматриваем элементы на и выше главной оси
-            if (j % 2 == 0 && mat[i][j] > 0) { // проверяем, что столбец четный и число положительное
+        for (int j = i; j < ncols; j++) { // ГЇГ°Г®Г±Г¬Г ГІГ°ГЁГўГ ГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г­Г  ГЁ ГўГ»ГёГҐ ГЈГ«Г ГўГ­Г®Г© Г®Г±ГЁ
+            if (j % 2 == 0 && mat[i][j] > 0) { // ГЇГ°Г®ГўГҐГ°ГїГҐГ¬, Г·ГІГ® Г±ГІГ®Г«ГЎГҐГ¶ Г·ГҐГІГ­Г»Г© ГЁ Г·ГЁГ±Г«Г® ГЇГ®Г«Г®Г¦ГЁГІГҐГ«ГјГ­Г®ГҐ
                 summ += mat[i][j];
             }
         }
@@ -69,8 +68,7 @@ int main() {
     return 0;
 }
 
-//Дана матрица. Элементы первой строки — количество осадков в соответствующий день, второй строки — сила ветра в этот день. Найти, был ли в эти дни ураган? (ураган — когда самый сильный ветер был в самый дождливый день).
-
+//7
 #include <iostream>
 #include <array>
 #include <stdlib.h>
@@ -81,41 +79,50 @@ int main() {
     const int days = 7;
 
     std::array<std::array<int, days>, 2> mat;
-
-    for (int i = 0; i < days; i++) {
-        for (int j = 0; j < 2; j++) {
+    
+    for (int i = 0; i < days; i++){
+        for (int j = 0; j < 2; j++){
             mat[i][j] = rand() % 50;
+             std::cout << mat[i][j] << " ";
         }
+         std::cout << "\n";
     }
 
     int max_wind_speed = 0;
     int max_rainfall = 0;
     int max_rainfall_index = -1;
+    int max_rwind_speed_index = -1;
+    
+         std::cout <<  "\n";
+    
+  for (int i = 0; i < days; i++) {
+    int wind_speed = mat[i][1];
+    int rainfall = mat[i][0];
+    
+     // std::cout << i << " " << rainfall << " " << wind_speed << "\n";
 
-    for (int i = 0; i < days; i++) {
-        int wind_speed = mat[1][i];
-        int rainfall = mat[0][i];
 
-        if (wind_speed > max_wind_speed) {
-            max_wind_speed = wind_speed;
-            max_rainfall = rainfall;
-            max_rainfall_index = i;
-        }
-        else if (wind_speed == max_wind_speed && rainfall > max_rainfall) {
-            max_rainfall = rainfall;
-            max_rainfall_index = i;
-        }
+    if (wind_speed > max_wind_speed) 
+     {
+      max_wind_speed = wind_speed;
+      max_rwind_speed_index = i;}
+      
+    if (rainfall > max_rainfall) 
+    {
+      max_rainfall = rainfall;
+      max_rainfall_index = i;} 
+      
+      std::cout << i << " " << max_wind_speed << " " << max_rainfall << "\n";
+      
     }
+  
+    if (max_rwind_speed_index == max_rainfall_index) {std::cout << "Р‘С‹Р» СѓСЂР°РіР°РЅ РІ РґРµРЅСЊ " << max_rainfall_index << std::endl;}
+    else {std::cout << "РЈСЂР°РіР°РЅР° РЅРµ Р±С‹Р»Рѕ "    << max_rainfall_index << " " << max_rwind_speed_index << " " << max_wind_speed << " " << max_rainfall << std::endl;}
 
-    std::cout << "Был ураган в день " << max_rainfall_index << std::endl;
-
-    return 0;
+  return 0;
 }
 
-//Объявить, реализовать заполнение данными с клавиатуры ИЛИ из файла и вывести
-//на экран матрицу, описывающую следующие сущности. Предложите свой вариант.
-//Состояние робота на шахматной доске. Робот характеризуется уровнем заряда, скоростью движения.
-
+// 9b
 #include<iostream>
 #include<array>
 #include<time.h>
@@ -158,8 +165,73 @@ int main() {
     return 0;
 }
 
-/* Реализовать сложение, вычитание, умножение, транспонирование матриц
- (разрешается фиксированный размер матриц). */
+//10(2)
+
+#include <iostream>
+#include <stdlib.h>
+#include <ctime>
+#include <array>
+
+const int nrows = 3;
+const int ncols = 3;
+
+int normal(std::array<std::array<int,ncols>, nrows> mat){
+    std::array<int,3> summ;
+    int num_summ;
+    int num_max = -1;
+    for(int i = 0; i < nrows; i++)
+    {
+        num_summ = 0;
+        for(int j = 0; j < ncols; j++)
+        {
+            num_summ += abs(mat[j][i]);
+        }
+        summ[i] = num_summ;
+    }
+
+    for(int a=0;a<3;a++)
+    {
+        if(summ[a]>num_max)
+        {
+            num_max = summ[a];
+        }
+    }
+
+    return num_max;
+}
+
+
+int main(){
+    srand(time(NULL));
+
+    std::array<std::array<int, ncols>, nrows> mat;
+    
+    for (int i = 0; i < nrows; i++){
+        for (int j = 0; j < ncols; j++){
+            mat[i][j] = rand() % 10;
+            std::cout << mat[i][j] << "  ";
+        }
+        std::cout << "\n";
+    }
+    
+    std::cout << "\n";
+    
+    int second = 1;
+    
+    for (int i = 0; i < nrows; i++){
+        second = mat[i][1];
+        for (int j = 0; j < ncols; j++){
+            mat[i][j] *= second;
+            std::cout << mat[i][j] << "  ";
+        }
+        std::cout << "\n";
+    }
+    std::cout << "\n" << "Normal: " << normal(mat);
+    
+    return 0;
+}
+
+//11
 
 #include <iostream>
 #include <array>
@@ -168,7 +240,7 @@ int main() {
 const int nrows = 3, ncols = 3;
 
 void summMat(std::array<std::array<int, ncols>, nrows> mat1, std::array<std::array<int, ncols>, nrows> mat2) {
-    std::cout << "Cумма\n";
+    std::cout << "CГіГ¬Г¬Г \n";
     for (int i = 0; i < nrows; i++) {
         for (int j = 0; j < ncols; j++) {
             std::cout << mat1[i][j] + mat2[i][j] << " ";
@@ -178,7 +250,7 @@ void summMat(std::array<std::array<int, ncols>, nrows> mat1, std::array<std::arr
 }
 
 void minMat(std::array<std::array<int, ncols>, nrows> mat1, std::array<std::array<int, ncols>, nrows> mat2) {
-    std::cout << "Разность\n";
+    std::cout << "ГђГ Г§Г­Г®Г±ГІГј\n";
     for (int i = 0; i < nrows; i++) {
         for (int j = 0; j < ncols; j++) {
             std::cout << mat1[i][j] - mat2[i][j] << " ";
@@ -189,7 +261,7 @@ void minMat(std::array<std::array<int, ncols>, nrows> mat1, std::array<std::arra
 
 void ymnozhMat(std::array<std::array<int, ncols>, nrows> mat1, std::array<std::array<int, ncols>, nrows> mat2) {
     std::array<std::array<int, ncols>, nrows> res;
-    std::cout << "Умножение\n";
+    std::cout << "Г“Г¬Г­Г®Г¦ГҐГ­ГЁГҐ\n";
     for (int i = 0; i < nrows; i++) {
         for (int j = 0; j < ncols; j++) {
             for (int k = 0; k < nrows; k++) {
@@ -207,7 +279,7 @@ void ymnozhMat(std::array<std::array<int, ncols>, nrows> mat1, std::array<std::a
 
 void trancMat(std::array<std::array<int, ncols>, nrows> mat) {
     std::array<std::array<int, ncols>, nrows> res;
-    std::cout << "Транспонирование\n";
+    std::cout << "Г’Г°Г Г­Г±ГЇГ®Г­ГЁГ°Г®ГўГ Г­ГЁГҐ\n";
     for (int i = 0; i < nrows; i++) {
         for (int j = 0; j < ncols; j++) {
             res[i][j] = mat[j][i];
@@ -252,9 +324,7 @@ int main() {
 
     return 0;
 }
-
-/*Сосчитать количество чёрных пятен на белой шкуре. Шкуру представить
- в виде 0 и 1 матрицы, где 0 - белый, а 1 - чёрный цвет.*/
+//12
 
 #include <iostream>
 #include <array>
